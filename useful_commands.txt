@@ -4,12 +4,21 @@
 # Bring stack up
 ./vendor/bin/sail up
 
+# list running containers
+docker ps
+
 # Get a shell on container
 docker exec -it <ID> /bin/bash
-
-# Connect to MySQL (in MySQL container)
-mysql -u sail -p
 
 # Trigger migrations (in sail container)
 php artisan migrate
 php artisan migrate --seed
+
+# Connect to MySQL (in MySQL container)
+mysql -u sail -p
+
+# SQL commands
+show databases
+use (db name)
+show tables#
+select * from (Table name)
