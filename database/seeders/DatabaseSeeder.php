@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\MyUser;
+use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // MyUser::factory(10)->create();
+        // User::factory(10)->create();
 
-        MyUser::factory(10)->create()->each(function($user){
+        User::factory(10)->create()->each(function($user){
             Post::factory(5)->create(["user_id"=> $user->user_id])->each(function($post) use ($user){
                 Comment::factory(3)->create([
                     "user_id"=> $user->user_id,

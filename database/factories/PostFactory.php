@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\MyUser;
+use App\Models\User;
 use App\Models\Post;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -24,7 +24,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [            
-            'user_id' => MyUser::factory(),
+            'user_id' => User::factory(),
             'post_id' => $this->faker->unique()->uuid(),
             'title'=> $this->faker->sentence,
             'content'=> $this->faker->paragraph,

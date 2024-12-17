@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\MyUser;
+use App\Models\User;
 use App\Models\Post;
 use App\models\Comment;
 
@@ -26,7 +26,7 @@ class CommentFactory extends Factory
     {
         return [         
             'comment_id' => $this->faker->unique()->uuid(),
-            'user_id' => MyUser::factory(),
+            'user_id' => User::factory(),
             'post_id' => Post::factory(),
             'content' => $this->faker->paragraph,
         ];
