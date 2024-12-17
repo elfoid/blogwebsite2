@@ -1,0 +1,15 @@
+# Bring down stack, fully deleting
+./vendor/bin/sail down -v
+
+# Bring stack up
+./vendor/bin/sail up
+
+# Get a shell on container
+docker exec -it <ID> /bin/bash
+
+# Connect to MySQL (in MySQL container)
+mysql -u sail -p
+
+# Trigger migrations (in sail container)
+php artisan migrate
+php artisan migrate --seed
