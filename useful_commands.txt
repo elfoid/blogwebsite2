@@ -14,6 +14,14 @@ docker exec -it <ID> /bin/bash
 php artisan migrate
 php artisan migrate --seed
 
+# If DB wiped, do this
+php artisan make:session-table
+php artisan migrate
+
+#drops all tables first
+php artisan migrate:fresh --seed
+
+
 # Connect to MySQL (in MySQL container)
 mysql -u sail -p
 
