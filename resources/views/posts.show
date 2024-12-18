@@ -1,9 +1,0 @@
-<x-app-layout>
-    <div class="max-w-5xl mx-auto py-12">
-        <h1 class="text-3xl font-bold mb-4">{{ $post->title ?? 'Untitled Post'}}</h1>
-        <div class="prose lg:prose-xl">
-            <p>{{ $post->body }}</p>
-        </div>
-        <p class="mt-4 text-sm text-gray-600">Created {{ $post->created_at->diffForHumans() }} by {{ $post->user->name }}</p>
-    </div>
-</x-app-layout>

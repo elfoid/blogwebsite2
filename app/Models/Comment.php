@@ -9,6 +9,7 @@ class Comment extends Model
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
 
+    protected $primaryKey = 'comment_id';
     /**
      * The attributes that are mass assignable.
      *

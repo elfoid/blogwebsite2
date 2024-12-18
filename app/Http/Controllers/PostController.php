@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //return view('posts.create');
+       // return view('posts.create');
     }
 
     /**
@@ -48,9 +48,15 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($post_id)
     {
-        //return view('posts.show', compact('post'));
+        //dd($post_id);
+
+        $post = Post::find($post_id);
+        if(!$post){
+            abort(404);
+        }
+        return view('posts.show', compact('post'));
 
     }
 

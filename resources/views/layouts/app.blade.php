@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <h1>My Application</h1>
+        <h1>LaraBlog</h1>
     </header>
 
     <main>
@@ -15,7 +15,7 @@
     </main>
 
     <footer>
-        <p>&copy; {{ date('Y') }} My Application</p>
+        <p>&copy; {{ date('Y') }} LaraBlog</p>
     </footer>
 </body>
 </html>
