@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('profile_pic')
                 ->nullable();
+            $table->index('user_id');
         });
     }
     public function down(): void
