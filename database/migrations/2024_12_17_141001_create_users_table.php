@@ -12,8 +12,8 @@ return new class extends Migration
             $table->uuid("user_id")->primary();
             $table->uuid("role_id");
             $table->string('name');
-            $table->string('password');
             $table->timestamps();
+            $table->string('password');
             $table->string('profile_pic')
                 ->nullable();
         });
