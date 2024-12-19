@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class PostController extends Controller
 {
@@ -22,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-       // return view('posts.create');
+       return view('posts.create');
     }
 
     /**
@@ -30,18 +31,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        /*$request->validate([
+        $request->validate([
             'title' => 'required|max:255',
-            'body' => 'required',
+            'content' => 'required',
         ]);
 
         $post = new Post();
         $post->title = $request->title;
         $post->body = $request->body;
-        $post->user_id = auth()->id(); // Assuming user is logged in
+        $post->user_id = Auth::id();
         $post->save();
 
-        return redirect()->route('posts.index')->with('success', 'Post created successfully.');*/
+        return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     
     }
 
