@@ -6,6 +6,8 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 class PostController extends Controller
 {
@@ -43,14 +45,15 @@ class PostController extends Controller
             'content' => 'required',
         ]);
 
+        $userId = Auth::id();
         $post = new Post();
+        $post->post_id = Str::uuid();
         $post->title = $request->title;
-        $post->body = $request->body;
-        $post->user_id = Auth::id();
+        $post->content = $request->content;
+        $post->user_id = auth()->user()->user_id;
         $post->save();
 
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
-    
     }
 
     /**
