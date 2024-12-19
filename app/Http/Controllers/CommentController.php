@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class CommentController extends Controller
 {
@@ -18,17 +20,26 @@ class CommentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($post_id)
     {
-        //
+        return view('comments.create', compact('post_id'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request, $post_id)
     {
-        //
+        $request->validate([
+            'content' => 'required'
+        ]);
+    
+        $comment = new Comment();
+        $comment->comment_id = Str::uuid();
+        $comment->content = $request->content;
+        $comment->post_id = $post_id;
+        $comment->user_id = auth()->id();
+        $comment->save();
+    
+        return redirect()->route('posts.show', $post_id)
+                        ->with('success', 'Comment added successfully');
     }
 
     /**

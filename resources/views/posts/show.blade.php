@@ -21,6 +21,6 @@
         <p>No comments yet.</p>
     @endif
     
-
+    <a href="{{ route('comments.create', ['post_id' => $post->post_id]) }}" class="btn btn-primary">Add Comment</a>
     <a href="{{ route('posts.index') }}">Back to Posts</a> 
 @endsection
