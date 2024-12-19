@@ -5,6 +5,7 @@
 
 @section('content')
     <h1>All Posts</h1>
+    <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">Create New Post</a>
 
     @if ($posts->count())
         <ul>

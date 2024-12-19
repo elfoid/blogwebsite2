@@ -28,7 +28,6 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'user_id' => $this->faker->unique()->uuid(),
-            'role_id' => $this->faker->uuid(),
             'password' => static::$password ??= Hash::make('password'),
             'profile_pic' => null,
         ];

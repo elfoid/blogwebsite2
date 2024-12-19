@@ -1,27 +1,87 @@
 <?php
 
+// namespace App\Models;
+
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
+
+// class User extends Authenticatable
+// {
+//     /** @use HasFactory<\Database\Factories\UserFactory> */
+//     use HasFactory;
+
+//    protected $primaryKey = 'user_id';
+//     /**
+//      * The attributes that are mass assignable.
+//      *
+//      * @var array<int, string>
+//      */
+//     protected $fillable = [
+//         'user_id',
+//         'role',
+//         'name',
+//         'password',
+//         'profile_pic',
+//     ];
+
+//     /**
+//      * The attributes that should be hidden for serialization.
+//      *
+//      * @var array<int, string>
+//      */
+//     protected $hidden = [
+//         'password',
+//     ];
+
+//     /**
+//      * Get the attributes that should be cast.
+//      *
+//      * @return array<string, string>
+//      */
+//     protected function casts(): array
+//     {
+//         return [
+//             'password' => 'hashed',
+//         ];
+//     }
+
+//     public function posts()
+//     {
+//         return $this->hasMany(Post::class);
+//     }
+//     public function comments()
+//     {
+//         return $this->hasMany(Comment::class);
+//     }
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory;
+    use HasFactory, Notifiable;
 
-   protected $primaryKey = 'user_id';
+    protected $primaryKey = 'user_id'; // Important: Use user_id
+    public $incrementing = false; // Important: No auto-incrementing
+    protected $keyType = 'string'; // Important: Key is a string (UUID)
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
-        'role',
+        'user_id', // Important: Include user_id for mass assignment
         'name',
         'password',
         'profile_pic',
+        
+
     ];
 
     /**
@@ -31,26 +91,26 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'user_id', 'user_id');
     }
+
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'user_id', 'user_id');
     }
 }

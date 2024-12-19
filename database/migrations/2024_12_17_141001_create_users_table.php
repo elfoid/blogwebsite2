@@ -9,14 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create("users", function (Blueprint $table) {
-            $table->uuid("user_id")->primary();
-            $table->uuid("role_id");
-            $table->string('name');
-            $table->timestamps();
-            $table->string('password');
-            $table->string('profile_pic')
-                ->nullable();
+            $table->uuid('user_id'); // UUID primary key
             $table->index('user_id');
+            $table->string('profile_pic')->nullable();
+            $table->string('name');
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
     public function down(): void

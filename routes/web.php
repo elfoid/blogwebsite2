@@ -9,6 +9,9 @@ Route::resource('posts', PostController::class);
 Route::prefix('posts/{post_id}')->group(function () {
     Route::resource('comments', CommentController::class)->except(['destroy']);
 });
+
+//Route::post('/login', [LoginController::class, 'login'])->name('login');
+
 //Route::resources('posts.comments', CommentController::class);
 
 /*
@@ -19,3 +22,6 @@ Route::get('/', function() {
     return view('welcome');
 }); 
 */
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
