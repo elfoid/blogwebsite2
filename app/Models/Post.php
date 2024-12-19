@@ -9,18 +9,18 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'post_id'; // Important: Use post_id
-    public $incrementing = false; // Important: No auto-incrementing
-    protected $keyType = 'string'; // Important: Key is a string (UUID)
-    protected $fillable = ['post_id', 'user_id', 'title', 'content']; // Important: For mass assignment
+    protected $primaryKey = 'post_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    protected $fillable = ['post_id', 'user_id', 'title', 'content'];
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'user_id', 'user_id'); // Correct foreign key and local key
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'post_id', 'post_id'); // Correct foreign key and local key
+        return $this->hasMany(Comment::class, 'post_id', 'post_id');
     }
 }

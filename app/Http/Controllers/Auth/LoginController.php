@@ -30,18 +30,12 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/posts';
     public const HOME = '/posts';
-    //protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('guest')->except('logout');
-    //     $this->middleware('auth')->only('logout');
-    // }
 
     protected function credentials(Request $request)
     {
@@ -86,7 +80,6 @@ class LoginController extends Controller
                 'session_data' => $request->session()->all()
             ]);
     
-
             //return redirect()->intended(RouteServiceProvider::HOME);
             return redirect()->intended('/posts');
         }
