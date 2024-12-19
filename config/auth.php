@@ -38,8 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
-            'redirectTo' => '/posts',
+            'provider' => 'users'
         ],
     ],
 

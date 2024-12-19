@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'users';
     protected $primaryKey = 'user_id'; // Important: Use user_id
     public $incrementing = false; // Important: No auto-incrementing
     protected $keyType = 'string'; // Important: Key is a string (UUID)
@@ -57,5 +58,10 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class, 'user_id', 'user_id');
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'user_id';
     }
 }

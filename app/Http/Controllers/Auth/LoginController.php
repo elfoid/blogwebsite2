@@ -65,8 +65,28 @@ class LoginController extends Controller
 
 
         if (Auth::attempt($credentials)) {
-
+            $userId = Auth::id();
+        
+            \Log::info('Before regenerate', [
+                'session_id' => session()->getId(),
+                'user_id' => $userId
+            ]);
+    
             $request->session()->regenerate();
+            
+            // Store this for after regeneration
+            $request->session()->put('auth.user_id', $userId);
+            
+            // Force the session to be saved and started
+            $request->session()->save();
+            
+            \Log::info('After save', [
+                'session_id' => session()->getId(),
+                'user_id' => $userId,
+                'session_data' => $request->session()->all()
+            ]);
+    
+
             //return redirect()->intended(RouteServiceProvider::HOME);
             return redirect()->intended('/posts');
         }
