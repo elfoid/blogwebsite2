@@ -10,6 +10,9 @@ class Comment extends Model
     use HasFactory;
 
     protected $primaryKey = 'comment_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    
     /**
      * The attributes that are mass assignable.
      *

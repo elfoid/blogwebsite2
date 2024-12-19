@@ -14,6 +14,10 @@
             <p>{{ $comment->content }}</p>
             <p>By: {{ $comment->user->name ?? 'Anonymous' }}</p>
             <p>Posted: {{ $comment->created_at->diffForHumans() }}</p>
+            <a href="{{ route('comments.edit', [
+                'post_id' => $post->post_id, 
+                'comment' => $comment->comment_id
+            ]) }}" class="btn btn-sm btn-secondary">Edit Comment</a>
         </div>
     @endforeach
 
@@ -21,6 +25,6 @@
         <p>No comments yet.</p>
     @endif
     
-    <a href="{{ route('comments.create', ['post_id' => $post->post_id]) }}" class="btn btn-primary">Add Comment</a>
+    <a href="{{ route('comments.create', ['post_id' => $post->post_id]) }}">Add Comment</a>
     <a href="{{ route('posts.index') }}">Back to Posts</a> 
 @endsection
