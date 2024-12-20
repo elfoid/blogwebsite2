@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'user_id' => $this->faker->unique()->uuid(),
             'password' => static::$password ??= Hash::make('password'),
             'profile_pic' => null,
+            'can_comment' => false
         ];
     }
 }

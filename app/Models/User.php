@@ -26,8 +26,7 @@ class User extends Authenticatable
         'name',
         'password',
         'profile_pic',
-        
-
+        'can_comment'
     ];
 
     /**
@@ -48,6 +47,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'can_comment' => 'boolean',
     ];
 
     public function posts()

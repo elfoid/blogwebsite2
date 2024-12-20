@@ -64,10 +64,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'user_id' => Uuid::uuid4()->toString(), // Generate UUID here
-            
+            'user_id' => Uuid::uuid4()->toString(),
             'name' => $data['name'],
             'password' => Hash::make($data['password']),
+            'can_comment' => isset($data['can_comment']),
         ]);
     }
 }

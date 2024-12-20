@@ -27,19 +27,26 @@ class CommentController extends Controller
 
     public function store(Request $request, $post_id)
     {
+        // Validate the user is allowed to ccreate a comment
+        $this->authorize('create', Comment::class);
+
+
+        // Validate the content has not been emptied
         $request->validate([
             'content' => 'required'
         ]);
     
+        // Store the comment, now auth and validation are good.
         $comment = new Comment();
         $comment->comment_id = Str::uuid();
         $comment->content = $request->content;
         $comment->post_id = $post_id;
+
+        // User from current session
         $comment->user_id = auth()->id();
         $comment->save();
     
-        return redirect()->route('posts.show', $post_id)
-                        ->with('success', 'Comment added successfully');
+        return redirect()->route('posts.show', $post_id)->with('success', 'Comment added successfully');
     }
 
     /**

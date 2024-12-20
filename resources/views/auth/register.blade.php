@@ -47,6 +47,17 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="can_comment" id="can_comment" value="1" {{ old('can_comment') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="can_comment">
+                                        {{ __('Allow commenting') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
