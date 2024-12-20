@@ -32,12 +32,17 @@ class PostPolicy
         return false;
     }
 
+    public function edit(User $user, Post $post)
+    {
+        return $user->user_id === $post->user_id;
+    }
+
     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->user_id === $post->user_id;
     }
     
 

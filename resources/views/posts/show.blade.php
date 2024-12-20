@@ -7,7 +7,8 @@
     <p>{{ $post->content }}</p>
     <p><strong>Posted by:</strong> {{ $post->users->name ?? 'Anon' }}</p>
     <p><strong>Created at:</strong> {{ $post->created_at->format('F j, Y') }}</p>
-    
+    <a href="{{ route('posts.edit', ['post' => $post->post_id]) }}">Edit Post</a>
+
     <h3>Comments</h3>
     @foreach($post->comments as $comment)
         <div>

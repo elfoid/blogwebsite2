@@ -76,8 +76,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //return view('posts.edit', compact('post'));
-
+        //$post = Post::findOrFail($post);
+    
+        $this->authorize('edit', $post);
+        
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -85,16 +88,20 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        /*$request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
+        //$post = Post::findOrFail($post);
+    
+        $this->authorize('update', $post);
+        
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
         ]);
-
+    
         $post->title = $request->title;
-        $post->body = $request->body;
+        $post->content = $request->content;
         $post->save();
-
-        return redirect()->route('posts.show', $post)->with('success', 'Post updated successfully.'); */
+    
+        return redirect()->route('posts.show', $post->post_id)->with('success', 'Post updated successfully');
     }
 
     /**
