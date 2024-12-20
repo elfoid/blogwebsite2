@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Comment')
+@section('title', 'Add a Comment')
 
 @section('content')
     <h1>Add a Comment</h1>

@@ -13,18 +13,17 @@ class PostController extends Controller
 {
     public function __construct()
     {
+        // Post controller must be under the auth middleware so that it validates
+        // the session
         $this->middleware('auth');
     }
-
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('posts.index', [
-            'posts' => Post::latest()->with('users')->paginate(10), 
-        ]);
+        return view('posts.index', ['posts' => Post::latest()->with('users')->paginate(10), ]);
     }
 
     /**
@@ -40,6 +39,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate Title and content are present before trying to save
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
@@ -50,9 +50,12 @@ class PostController extends Controller
         $post->post_id = Str::uuid();
         $post->title = $request->title;
         $post->content = $request->content;
+
+        // Get the user ID from the auth session! This took agest to get working
         $post->user_id = auth()->user()->user_id;
         $post->save();
 
+        // route back to the index
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
 
@@ -92,15 +95,19 @@ class PostController extends Controller
     
         $this->authorize('update', $post);
         
+        // Validate that the user hasn't cleared the title or content when updating
         $request->validate([
             'title' => 'required',
             'content' => 'required'
         ]);
     
+
+        // Save!
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
     
+        // back to the posts having updated
         return redirect()->route('posts.show', $post->post_id)->with('success', 'Post updated successfully');
     }
 

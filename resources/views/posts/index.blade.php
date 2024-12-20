@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'All Posts')
+@section('title', 'View All Posts')
 
 @section('content')
     <h1>All Posts</h1>

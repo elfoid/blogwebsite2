@@ -34,6 +34,7 @@ class PostPolicy
 
     public function edit(User $user, Post $post)
     {
+        //stops the form opening if its not the real user
         return $user->user_id === $post->user_id;
     }
 
@@ -42,6 +43,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
+        // catch an update before it hits the store, checks the user is the owner
         return $user->user_id === $post->user_id;
     }
     

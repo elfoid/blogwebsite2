@@ -70,6 +70,10 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($comment);
 
+        $request->validate([
+            'content' => 'required'
+        ]);
+
         // dd([
         //     'authenticated_user_id' => auth()->id(),
         //     'comment_user_id' => $comment->user_id,
@@ -82,13 +86,11 @@ class CommentController extends Controller
         $this->authorize('update', $comment);
 
 
-        $request->validate([
-            'content' => 'required'
-        ]);
-    
+        // Auth and Validation are good, save the comment update
         $comment->content = $request->content;
         $comment->save();
     
+        // back to the post
         return redirect()->route('posts.show', $post_id)->with('success', 'Comment updated successfully');
     }
 
